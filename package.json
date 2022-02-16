@@ -16,7 +16,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "prettier --check '**/*.{ts,tsx,json}' && eslint src/ --ext .ts,.tsx",
+    "fmt": "prettier --write '**/*.{ts,tsx,json}' && eslint src/ --ext .ts,.tsx --fix"
   },
   "browserslist": {
     "production": [
