@@ -1,5 +1,7 @@
+import { Carousel } from './Carousel/';
+
 function App() {
-  return <div>hello, world</div>;
+  return <Carousel />;
 }
 
 export default App;
