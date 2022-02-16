@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "moneyforward",
+    "moneyforward/rules/react",
+    "moneyforward/rules/typescript",
+    "moneyforward/rules/jest",
+    "moneyforward/rules/testing-library/react",
+    "moneyforward/rules/prettier"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-vars": "off"
+  }
+}
