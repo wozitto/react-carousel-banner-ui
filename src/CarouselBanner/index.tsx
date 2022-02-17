@@ -7,11 +7,11 @@ export const CarouselBanner = () => {
   return (
     <>
       <BannerWrapper>
-        <BannerItem />
-        <BannerItem />
-        <BannerItem />
-        <BannerItem />
-        <BannerItem />
+        <BannerItem text={'経理'} />
+        <BannerItem text={'請求書作成'} />
+        <BannerItem text={'経費精算'} />
+        <BannerItem text={'給与計算'} />
+        <BannerItem text={'マイナンバー収集'} />
       </BannerWrapper>
       <CarouselWrapper>
         <CarouselItem text="Item 1" />
