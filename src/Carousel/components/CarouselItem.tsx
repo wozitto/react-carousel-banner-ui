@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 type Props = {
-  children: string;
+  text: string
 };
 
-export const Carousel = (props: Props) => {
-  return <Item>{props.children}</Item>;
+export const CarouselItem = (props: Props) => {
+  return <Item>{props.text}</Item>;
 };
 
 const Item = styled.div`
