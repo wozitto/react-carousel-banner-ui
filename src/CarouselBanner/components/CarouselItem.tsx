@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type Props = {
-  text: string
+  text: string;
 };
 
 export const CarouselItem = (props: Props) => {

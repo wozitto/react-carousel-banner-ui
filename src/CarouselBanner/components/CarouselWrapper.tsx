@@ -1,9 +1,9 @@
-import React, { useState, ReactChild } from 'react';
+import React, { useState, ReactElement } from 'react';
 
 import styled from 'styled-components';
 
 type Props = {
-  children: ReactChild[];
+  children: ReactElement[];
 };
 
 export const CarouselWrapper = (props: Props) => {
