@@ -1,20 +1,34 @@
 import styled from 'styled-components';
 
 type Props = {
-  text: string;
+  img: string;
 };
 
 export const CarouselItem = (props: Props) => {
-  return <Item>{props.text}</Item>;
+  return (
+    <Item>
+      <Inner>
+        <Img src={`${window.location.origin}/${props.img}`} alt="" />
+      </Inner>
+    </Item>
+  );
 };
 
 const Item = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
-  background-color: green;
   user-select: none;
   color: #fff;
   width: 100%;
+`;
+
+const Inner = styled.div`
+  margin: auto;
+  text-align: center;
+`;
+
+const Img = styled.img`
+  // width: 80%;
+  height: 600px;
 `;

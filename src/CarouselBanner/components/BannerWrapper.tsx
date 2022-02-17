@@ -20,7 +20,7 @@ export const BannerWrapper = (props: Props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 120px;
+  height: 105px;
   margin-bottom: 50px;
   border-bottom: 1px solid #b3b3b3;
 `;

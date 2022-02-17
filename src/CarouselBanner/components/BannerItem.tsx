@@ -16,7 +16,7 @@ type Props = {
 
 export const BannerItem = (props: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
-  const iconStyle: React.CSSProperties = { padding: 10, fontSize: 50 };
+  const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
 
   return (
     <Item>
@@ -29,6 +29,6 @@ export const BannerItem = (props: Props) => {
 const Item = styled.div`
   text-align: center;
   width: 150px;
-  height: 116px;
+  height: 101px;
   opacity: .4;
 `

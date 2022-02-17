@@ -30,4 +30,5 @@ const Inner = styled.div<{ activeIndex: number }>`
   white-space: nowrap;
   transform: ${({ activeIndex }) =>
     activeIndex ? `translateX(-${activeIndex * 100}%)` : 'none'};
+  transition: transform 0.3s;
 `;
