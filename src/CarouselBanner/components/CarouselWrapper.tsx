@@ -10,14 +10,15 @@ export const CarouselWrapper = (props: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <Wrapper>
-      <Inner activeIndex={activeIndex}>
-        {props.children &&
-          props.children.map((child, index) => {
+    <>
+      <Wrapper>
+        <Inner activeIndex={activeIndex}>
+          {props.children.map((child, index) => {
             return <React.Fragment key={index}>{child}</React.Fragment>;
           })}
-      </Inner>
-    </Wrapper>
+        </Inner>
+      </Wrapper>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
-import { Carousel } from './Carousel/';
+import { CarouselBanner } from './CarouselBanner';
 
 function App() {
-  return <Carousel />;
+  return <CarouselBanner />;
 }
 
 export default App;
