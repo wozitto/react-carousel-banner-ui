@@ -6,7 +6,7 @@ import { CarouselItem } from './components/CarouselItem';
 import reducer from './reducers';
 
 export const CarouselBanner = () => {
-  const initialState = { activeIndex: 0 };
+  const initialState = { activeIndex: 1 };
   const [state, dispatch] = useReducer<any>(reducer, initialState);
   return (
     <>

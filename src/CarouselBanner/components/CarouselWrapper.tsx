@@ -1,7 +1,6 @@
 import React, { useState, ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { PREV_EVENT, NEXT_EVENT } from '../actions';
 
 import styled from 'styled-components';
 
@@ -12,22 +11,47 @@ type Props = {
 };
 
 export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const updateIndex = (newIndex: number) => {
+    const inner = document.getElementById('inner')!;
+    inner.style.transition = 'transform 0.3s';
+
+    if (newIndex <= 0) {
+      dispatch({ type: 'SET_INDEX', newIndex });
+      return setTimeout(() => {
+        inner.style.transition = 'none';
+        dispatch({ type: 'SET_INDEX', newIndex: children.length });
+      }, 200);
+    } else if (newIndex - 1 >= children.length) {
+      dispatch({ type: 'SET_INDEX', newIndex });
+      return setTimeout(() => {
+        inner.style.transition = 'none';
+        dispatch({ type: 'SET_INDEX', newIndex: 1 });
+      }, 200);
+    }
+
+    dispatch({ type: 'SET_INDEX', newIndex });
+  };
 
   return (
     <>
       <Wrapper>
-        <Inner activeIndex={state.activeIndex}>
+        <Inner id="inner" activeIndex={state.activeIndex}>
+          {children.at(-1)}
           {children.map((child, index) => {
             return <React.Fragment key={index}>{child}</React.Fragment>;
           })}
+          {children[0]}
         </Inner>
-        <PrevBtn>
+        <PrevBtn
+          onClick={() => {
+            updateIndex(state.activeIndex - 1);
+          }}
+        >
           <FontAwesomeIcon icon={faAngleLeft} />
         </PrevBtn>
         <NextBtn
           onClick={() => {
-            dispatch({ type: 'NEXT_EVENT' });
+            updateIndex(state.activeIndex + 1);
           }}
         >
           <FontAwesomeIcon icon={faAngleRight} />
@@ -46,7 +70,6 @@ const Inner = styled.div<{ activeIndex: number }>`
   white-space: nowrap;
   transform: ${({ activeIndex }) =>
     activeIndex ? `translateX(-${activeIndex * 100}%)` : 'none'};
-  transition: transform 0.3s;
 `;
 
 const PrevBtn = styled.div`
