@@ -5,12 +5,11 @@ type Props = {
   children: ReactElement[];
 };
 
-export const BannerWrapper = (props: Props) => {
+export const BannerWrapper = ({ children }: Props) => {
   return (
     <Wrapper>
       <Inner>
-        {props.children.map((child, index) => {
-          // return <React.Fragment key={index}>{child}</React.Fragment>;
+        {children.map((child, index) => {
           return React.cloneElement(child, { index });
         })}
       </Inner>
@@ -25,7 +24,7 @@ const Wrapper = styled.div`
   border-bottom: 1px solid #b3b3b3;
 `;
 const Inner = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

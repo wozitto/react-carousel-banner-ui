@@ -1,9 +1,13 @@
+import React, { useReducer } from 'react';
 import { BannerWrapper } from './components/BannerWrapper';
 import { BannerItem } from './components/BannerItem';
 import { CarouselWrapper } from './components/CarouselWrapper';
 import { CarouselItem } from './components/CarouselItem';
+import reducer from './reducers';
 
 export const CarouselBanner = () => {
+  const initialState = { activeIndex: 0 };
+  const [state, dispatch] = useReducer<any>(reducer, initialState);
   return (
     <>
       <BannerWrapper>
@@ -13,7 +17,7 @@ export const CarouselBanner = () => {
         <BannerItem text={'給与計算'} />
         <BannerItem text={'マイナンバー収集'} />
       </BannerWrapper>
-      <CarouselWrapper>
+      <CarouselWrapper state={state} dispatch={dispatch}>
         <CarouselItem img={'carousel_1.jpg'} />
         <CarouselItem img={'carousel_2.jpg'} />
         <CarouselItem img={'carousel_3.jpg'} />

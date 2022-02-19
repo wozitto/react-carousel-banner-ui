@@ -12,16 +12,17 @@ import {
 type Props = {
   text: string;
   index?: number;
+  count?: number
 };
 
-export const BannerItem = (props: Props) => {
+export const BannerItem = ({ text, index, count }: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
   const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
 
   return (
     <Item>
-      <FontAwesomeIcon icon={icons[props.index!]} style={iconStyle} />
-      <div>{props.text}</div>
+      <FontAwesomeIcon icon={icons[index!]} style={iconStyle} />
+      <div>{text}</div>
     </Item>
   );
 };
@@ -30,5 +31,5 @@ const Item = styled.div`
   text-align: center;
   width: 150px;
   height: 101px;
-  opacity: .4;
-`
+  opacity: 0.4;
+`;

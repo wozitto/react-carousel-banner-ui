@@ -4,11 +4,11 @@ type Props = {
   img: string;
 };
 
-export const CarouselItem = (props: Props) => {
+export const CarouselItem = ({ img }: Props) => {
   return (
     <Item>
       <Inner>
-        <Img src={`${window.location.origin}/${props.img}`} alt="" />
+        <Img src={`${window.location.origin}/${img}`} alt="" />
       </Inner>
     </Item>
   );
@@ -29,6 +29,5 @@ const Inner = styled.div`
 `;
 
 const Img = styled.img`
-  // width: 80%;
-  height: 600px;
+  width: 75%;
 `;
