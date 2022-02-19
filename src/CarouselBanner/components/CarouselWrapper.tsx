@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -10,6 +10,21 @@ type Props = {
 };
 
 export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!paused) {
+        updateIndex(state.activeIndex + 1);
+      }
+    }, 3000);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  });
+
   const updateIndex = (newIndex: number) => {
     const inner = document.getElementById('inner')!;
     inner.style.transition = 'transform 0.3s';
@@ -31,10 +46,23 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
     dispatch({ type: 'SET_INDEX', newIndex });
   };
 
+  const MouseDown = (e: any) => {
+    setPaused(true);
+  };
+
+  const MouseUp = (e: any) => {
+    setPaused(false);
+  };
+
   return (
     <>
       <Wrapper>
-        <Inner id="inner" activeIndex={state.activeIndex}>
+        <Inner
+          id="inner"
+          activeIndex={state.activeIndex}
+          onMouseDown={(e) => MouseDown(e)}
+          onMouseUp={(e) => MouseUp(e)}
+        >
           {children.at(-1)}
           {children.map((child, index) => {
             return <React.Fragment key={index}>{child}</React.Fragment>;
