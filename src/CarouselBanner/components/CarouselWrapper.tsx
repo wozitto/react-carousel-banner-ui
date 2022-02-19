@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from 'react';
+import React, { useState, useEffect, ReactElement, MouseEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
@@ -11,13 +11,15 @@ type Props = {
 
 export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
   const [paused, setPaused] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [x, setX] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (!paused) {
         updateIndex(state.activeIndex + 1);
       }
-    }, 3000);
+    }, 4000);
     return () => {
       if (interval) {
         clearInterval(interval);
@@ -46,12 +48,32 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
     dispatch({ type: 'SET_INDEX', newIndex });
   };
 
-  const MouseDown = (e: any) => {
+  const handleMouseDown = (e: MouseEvent<HTMLElement>) => {
     setPaused(true);
+    setStartX(e.clientX);
   };
 
-  const MouseUp = (e: any) => {
+  const handleMouseUp = () => {
     setPaused(false);
+
+    if (Math.abs(x) < 0.1) {
+      updateIndex(state.activeIndex);
+    } else if (x > 0.1) {
+      updateIndex(state.activeIndex + 1);
+    } else {
+      updateIndex(state.activeIndex - 1);
+    }
+
+    setX(0);
+  };
+
+  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
+    if (!paused) {
+      return;
+    }
+    setX(
+      Math.round(((startX - e.clientX) / document.body.clientWidth) * 100) / 100
+    );
   };
 
   return (
@@ -59,9 +81,10 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
       <Wrapper>
         <Inner
           id="inner"
-          activeIndex={state.activeIndex}
-          onMouseDown={(e) => MouseDown(e)}
-          onMouseUp={(e) => MouseUp(e)}
+          activeIndex={state.activeIndex + x}
+          onMouseDown={(e) => handleMouseDown(e)}
+          onMouseUp={handleMouseUp}
+          onMouseMove={(e) => handleMouseMove(e)}
         >
           {children.at(-1)}
           {children.map((child, index) => {

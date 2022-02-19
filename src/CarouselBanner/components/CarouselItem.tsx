@@ -29,5 +29,6 @@ const Inner = styled.div`
 `;
 
 const Img = styled.img`
+  pointer-events: none;
   width: 75%;
 `;
