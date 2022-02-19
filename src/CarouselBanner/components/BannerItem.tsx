@@ -12,24 +12,41 @@ import {
 type Props = {
   text: string;
   index?: number;
-  count?: number
+  state?: any;
+  dispatch?: any;
 };
 
-export const BannerItem = ({ text, index, count }: Props) => {
+export const BannerItem = ({ text, index, state, dispatch }: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
   const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
+  const active = state.activeIndex === index! + 1;
 
   return (
-    <Item>
-      <FontAwesomeIcon icon={icons[index!]} style={iconStyle} />
-      <div>{text}</div>
+    <Item
+      active={active}
+      onClick={() => dispatch({ type: 'SET_INDEX', newIndex: index! + 1 })}
+    >
+      <Icon active={active}>
+        <FontAwesomeIcon icon={icons[index!]} style={iconStyle} />
+      </Icon>
+      <Text>{text}</Text>
     </Item>
   );
 };
 
-const Item = styled.div`
+const Item = styled.div<{ active: boolean }>`
   text-align: center;
-  width: 150px;
-  height: 101px;
-  opacity: 0.4;
+  width: 145px;
+  height: 96px;
+  opacity: ${({ active }) => (active ? 1 : 0.4)};
+  border-bottom: ${({ active }) => (active ? '4px solid #3ea8ff' : 'none')};
+`;
+
+const Icon = styled.div<{ active: boolean }>`
+  color: ${({ active }) => (active ? '#3ea8ff' : 'black')};
+  opacity: 1;
+`;
+
+const Text = styled.div`
+  color: #6e7b85;
 `;

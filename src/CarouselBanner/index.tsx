@@ -8,9 +8,10 @@ import reducer from './reducers';
 export const CarouselBanner = () => {
   const initialState = { activeIndex: 1 };
   const [state, dispatch] = useReducer<any>(reducer, initialState);
+
   return (
     <>
-      <BannerWrapper>
+      <BannerWrapper state={state} dispatch={dispatch}>
         <BannerItem text={'経理'} />
         <BannerItem text={'請求書作成'} />
         <BannerItem text={'経費精算'} />
