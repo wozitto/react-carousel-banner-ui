@@ -1,4 +1,4 @@
 export const devices = {
-  mobile: `(max-width: 767px)`,
-  tablet: `(max-width: 992px)`,
+  tablet: '(min-width: 768px)',
+  desktop: '(min-width: 992px)',
 };

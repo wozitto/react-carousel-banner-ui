@@ -26,31 +26,28 @@ export const BannerWrapper = ({ state, dispatch, children }: Props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100px;
+  height: 30px;
   margin-bottom: 50px;
-  border-bottom: 1px solid #b3b3b3;
+  position: absolute;
+  top: calc(100vw + 16px);
   @media ${devices.tablet} {
-    width: 100%;
-    position: absolute;
+    height: 100px;
     top: calc(100vw * 0.562 + 28px);
+    border-bottom: 1px solid #b3b3b3;
   }
-  @media ${devices.mobile} {
-    width: 100%;
-    height: 30px;
-    position: absolute;
-    top: calc(100vw + 16px);
-    border-bottom: none;
+  @media ${devices.desktop} {
+    position: static;
   }
 `;
 const Inner = styled.div`
-  width: 70%;
+  width: 85%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   @media ${devices.tablet} {
-    width: 85%;
+    justify-content: space-between;
   }
-  @media ${devices.mobile} {
-    justify-content: center;
+  @media ${devices.desktop} {
+    width: 70%;
   }
 `;

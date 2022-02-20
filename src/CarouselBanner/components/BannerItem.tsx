@@ -40,18 +40,22 @@ export const BannerItem = ({ text, index, state, dispatch }: Props) => {
 
 const Item = styled.div<{ active: boolean }>`
   user-select: none;
-  text-align: center;
-  width: 145px;
-  height: 96px;
-  opacity: ${({ active }) => (active ? 1 : 0.4)};
-  border-bottom: ${({ active }) => (active ? '4px solid #3ea8ff' : 'none')};
-  @media ${devices.mobile} {
-    width: 8px;
-    height: 8px;
-    border: 2px solid #3ea8ff;
-    border-radius: 50%;
-    background-color: ${({ active }) => (active ? '#3ea8ff' : 'none')};
-    margin-right: 3px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #3ea8ff;
+  border-radius: 50%;
+  background-color: ${({ active }) => (active ? '#3ea8ff' : '#fff')};
+  margin-right: 3px;
+  @media ${devices.tablet} {
+    margin: 0;
+    text-align: center;
+    width: 145px;
+    height: 96px;
+    opacity: ${({ active }) => (active ? 1 : 0.4)};
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    border-bottom: ${({ active }) => (active ? '4px solid #3ea8ff' : 'none')};
   }
 `;
 
@@ -62,8 +66,8 @@ const Icon = styled.div<{ active: boolean }>`
 
 const Text = styled.div`
   color: #6e7b85;
-  font-size: 16px;
-  @media ${devices.tablet} {
-    font-size: 14px;
+  font-size: 14px;
+  @media ${devices.desktop} {
+    font-size: 16px;
   }
 `;

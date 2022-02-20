@@ -149,37 +149,39 @@ const Inner = styled.div<{ activeIndex: number }>`
 `;
 
 const PrevBtn = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  text-align: center;
-  font-size: 16px;
-  line-height: 32px;
-  color: #3ea8ff;
-  border: 4px solid #3ea8ff;
-  border-radius: 50%;
-  @media ${devices.tablet} {
-    display: none;
+  display: none;
+  @media ${devices.desktop} {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 32px;
+    color: #3ea8ff;
+    border: 4px solid #3ea8ff;
+    border-radius: 50%;
   }
 `;
 
 const NextBtn = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  text-align: center;
-  font-size: 16px;
-  line-height: 32px;
-  color: #3ea8ff;
-  border: 4px solid #3ea8ff;
-  border-radius: 50%;
-  @media ${devices.tablet} {
-    display: none;
+  display: none;
+  @media ${devices.desktop} {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 32px;
+    color: #3ea8ff;
+    border: 4px solid #3ea8ff;
+    border-radius: 50%;
   }
 `;

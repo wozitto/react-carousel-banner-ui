@@ -36,11 +36,8 @@ const Inner = styled.div`
 
 const Img = styled.img`
   pointer-events: none;
-  width: 75%;
-  @media ${devices.tablet} {
-    width: 100%;
-  }
-  @media ${devices.mobile} {
-    width: 100vw;
+  width: 100vw;
+  @media ${devices.desktop} {
+    width: 72vw;
   }
 `;
