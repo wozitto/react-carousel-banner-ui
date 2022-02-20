@@ -15,7 +15,7 @@ export const BannerWrapper = ({ state, dispatch, children }: Props) => {
         {children.map((child, index) => {
           return (
             <Fragment key={index}>
-              {React.cloneElement(child, { index, state, dispatch })}
+              {React.cloneElement(child, { index: index + 1, state, dispatch })}
             </Fragment>
           );
         })}

@@ -8,8 +8,8 @@ type Props = {
 export const CarouselItem = ({ index }: Props) => {
   const isMobile = document.body.clientWidth < 768;
   const img = isMobile
-    ? `carousel_sp${index! + 1}.jpg`
-    : `carousel_pc${index! + 1}.jpg`;
+    ? `carousel_sp${index ? index + 1 : 1}.jpg`
+    : `carousel_pc${index ? index + 1 : 1}.jpg`;
 
   return (
     <Item>

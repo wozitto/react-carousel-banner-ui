@@ -35,19 +35,19 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
   });
 
   const updateIndex = (newIndex: number) => {
-    const inner = document.getElementById('inner')!;
-    inner.style.transition = 'transform 0.3s';
+    const inner = document.getElementById('inner');
+    inner ? (inner.style.transition = 'transform 0.3s') : null;
 
     if (newIndex <= 0) {
       dispatch({ type: 'SET_INDEX', newIndex });
       return setTimeout(() => {
-        inner.style.transition = 'none';
+        inner ? (inner.style.transition = 'transform 0.3s') : null;
         dispatch({ type: 'SET_INDEX', newIndex: children.length });
       }, 200);
     } else if (newIndex - 1 >= children.length) {
       dispatch({ type: 'SET_INDEX', newIndex });
       return setTimeout(() => {
-        inner.style.transition = 'none';
+        inner ? (inner.style.transition = 'transform 0.3s') : null;
         dispatch({ type: 'SET_INDEX', newIndex: 1 });
       }, 200);
     }

@@ -21,16 +21,24 @@ export const BannerItem = ({ text, index, state, dispatch }: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
   const isMobile = document.body.clientWidth < 768;
   const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
-  const active = state.activeIndex === index! + 1;
+  const active = index ? state.activeIndex === index : false;
 
   return (
     <Item
       active={active}
-      onClick={() => dispatch({ type: 'SET_INDEX', newIndex: index! + 1 })}
+      onClick={() =>
+        dispatch({
+          type: 'SET_INDEX',
+          newIndex: index ? index : state.activeIndex,
+        })
+      }
     >
       {!isMobile && (
         <Icon active={active}>
-          <FontAwesomeIcon icon={icons[index!]} style={iconStyle} />
+          <FontAwesomeIcon
+            icon={index ? icons[index-1] : icons[0]}
+            style={iconStyle}
+          />
         </Icon>
       )}
       {!isMobile && <Text>{text}</Text>}

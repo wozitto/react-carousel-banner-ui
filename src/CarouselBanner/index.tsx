@@ -7,7 +7,7 @@ import reducer from './reducers';
 
 export const CarouselBanner = () => {
   const initialState = { activeIndex: 1 };
-  const [state, dispatch] = useReducer<any>(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <>
