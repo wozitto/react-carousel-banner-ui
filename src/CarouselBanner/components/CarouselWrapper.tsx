@@ -110,7 +110,11 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
         >
           {children.at(-1)}
           {children.map((child, index) => {
-            return <Fragment key={index}>{child}</Fragment>;
+            return (
+              <Fragment key={index}>
+                {React.cloneElement(child, { index })}
+              </Fragment>
+            );
           })}
           {children[0]}
         </Inner>

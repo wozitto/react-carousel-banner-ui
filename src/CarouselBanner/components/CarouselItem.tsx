@@ -2,10 +2,15 @@ import styled from 'styled-components';
 import { devices } from '../../devices';
 
 type Props = {
-  img: string;
+  index?: number;
 };
 
-export const CarouselItem = ({ img }: Props) => {
+export const CarouselItem = ({ index }: Props) => {
+  const isMobile = document.body.clientWidth < 768;
+  const img = isMobile
+    ? `carousel_sp${index! + 1}.jpg`
+    : `carousel_pc${index! + 1}.jpg`;
+
   return (
     <Item>
       <Inner>
@@ -34,5 +39,8 @@ const Img = styled.img`
   width: 75%;
   @media ${devices.tablet} {
     width: 100%;
+  }
+  @media ${devices.mobile} {
+    width: 100vw;
   }
 `;

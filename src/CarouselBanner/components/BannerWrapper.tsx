@@ -30,9 +30,16 @@ const Wrapper = styled.div`
   margin-bottom: 50px;
   border-bottom: 1px solid #b3b3b3;
   @media ${devices.tablet} {
-    position: absolute;
     width: 100%;
+    position: absolute;
     top: calc(100vw * 0.562 + 28px);
+  }
+  @media ${devices.mobile} {
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: calc(100vw + 16px);
+    border-bottom: none;
   }
 `;
 const Inner = styled.div`
@@ -42,5 +49,8 @@ const Inner = styled.div`
   justify-content: space-between;
   @media ${devices.tablet} {
     width: 85%;
+  }
+  @media ${devices.mobile} {
+    justify-content: center;
   }
 `;

@@ -19,6 +19,7 @@ type Props = {
 
 export const BannerItem = ({ text, index, state, dispatch }: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
+  const isMobile = document.body.clientWidth < 768;
   const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
   const active = state.activeIndex === index! + 1;
 
@@ -27,10 +28,12 @@ export const BannerItem = ({ text, index, state, dispatch }: Props) => {
       active={active}
       onClick={() => dispatch({ type: 'SET_INDEX', newIndex: index! + 1 })}
     >
-      <Icon active={active}>
-        <FontAwesomeIcon icon={icons[index!]} style={iconStyle} />
-      </Icon>
-      <Text>{text}</Text>
+      {!isMobile && (
+        <Icon active={active}>
+          <FontAwesomeIcon icon={icons[index!]} style={iconStyle} />
+        </Icon>
+      )}
+      {!isMobile && <Text>{text}</Text>}
     </Item>
   );
 };
@@ -42,6 +45,14 @@ const Item = styled.div<{ active: boolean }>`
   height: 96px;
   opacity: ${({ active }) => (active ? 1 : 0.4)};
   border-bottom: ${({ active }) => (active ? '4px solid #3ea8ff' : 'none')};
+  @media ${devices.mobile} {
+    width: 8px;
+    height: 8px;
+    border: 2px solid #3ea8ff;
+    border-radius: 50%;
+    background-color: ${({ active }) => (active ? '#3ea8ff' : 'none')};
+    margin-right: 3px;
+  }
 `;
 
 const Icon = styled.div<{ active: boolean }>`

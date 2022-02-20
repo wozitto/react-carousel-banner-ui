@@ -19,11 +19,11 @@ export const CarouselBanner = () => {
         <BannerItem text={'マイナンバー収集'} />
       </BannerWrapper>
       <CarouselWrapper state={state} dispatch={dispatch}>
-        <CarouselItem img={'carousel_1.jpg'} />
-        <CarouselItem img={'carousel_2.jpg'} />
-        <CarouselItem img={'carousel_3.jpg'} />
-        <CarouselItem img={'carousel_4.jpg'} />
-        <CarouselItem img={'carousel_5.jpg'} />
+        <CarouselItem />
+        <CarouselItem />
+        <CarouselItem />
+        <CarouselItem />
+        <CarouselItem />
       </CarouselWrapper>
     </>
   );
