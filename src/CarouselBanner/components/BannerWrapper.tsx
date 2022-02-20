@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, Fragment } from 'react';
 import styled from 'styled-components';
+import { devices } from '../../devices';
 
 type Props = {
   state?: any;
@@ -12,7 +13,11 @@ export const BannerWrapper = ({ state, dispatch, children }: Props) => {
     <Wrapper>
       <Inner>
         {children.map((child, index) => {
-          return React.cloneElement(child, { index, state, dispatch });
+          return (
+            <Fragment key={index}>
+              {React.cloneElement(child, { index, state, dispatch })}
+            </Fragment>
+          );
         })}
       </Inner>
     </Wrapper>
@@ -24,10 +29,18 @@ const Wrapper = styled.div`
   height: 100px;
   margin-bottom: 50px;
   border-bottom: 1px solid #b3b3b3;
+  @media ${devices.tablet} {
+    position: absolute;
+    width: 100%;
+    top: calc(100vw * 0.562 + 28px);
+  }
 `;
 const Inner = styled.div`
   width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  @media ${devices.tablet} {
+    width: 85%;
+  }
 `;

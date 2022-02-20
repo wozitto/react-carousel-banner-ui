@@ -8,6 +8,7 @@ import {
   faCalculator,
   faIdCard,
 } from '@fortawesome/free-solid-svg-icons';
+import { devices } from '../../devices';
 
 type Props = {
   text: string;
@@ -35,6 +36,7 @@ export const BannerItem = ({ text, index, state, dispatch }: Props) => {
 };
 
 const Item = styled.div<{ active: boolean }>`
+  user-select: none;
   text-align: center;
   width: 145px;
   height: 96px;
@@ -49,4 +51,8 @@ const Icon = styled.div<{ active: boolean }>`
 
 const Text = styled.div`
   color: #6e7b85;
+  font-size: 16px;
+  @media ${devices.tablet} {
+    font-size: 14px;
+  }
 `;

@@ -1,7 +1,14 @@
-import React, { useState, useEffect, ReactElement, MouseEvent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  Fragment,
+  ReactElement,
+  MouseEvent,
+} from 'react';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import { devices } from '../../devices';
 
 type Props = {
   state: any;
@@ -67,6 +74,20 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
     setX(0);
   };
 
+  const handleMouseLeave = () => {
+    setPaused(false);
+
+    if (Math.abs(x) < 0.1) {
+      updateIndex(state.activeIndex);
+    } else if (x > 0.1) {
+      updateIndex(state.activeIndex + 1);
+    } else {
+      updateIndex(state.activeIndex - 1);
+    }
+
+    setX(0);
+  };
+
   const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
     if (!paused) {
       return;
@@ -85,10 +106,11 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
           onMouseDown={(e) => handleMouseDown(e)}
           onMouseUp={handleMouseUp}
           onMouseMove={(e) => handleMouseMove(e)}
+          onMouseLeave={handleMouseLeave}
         >
           {children.at(-1)}
           {children.map((child, index) => {
-            return <React.Fragment key={index}>{child}</React.Fragment>;
+            return <Fragment key={index}>{child}</Fragment>;
           })}
           {children[0]}
         </Inner>
@@ -132,9 +154,12 @@ const PrevBtn = styled.div`
   text-align: center;
   font-size: 16px;
   line-height: 32px;
-  color: blue;
-  border: 2px solid blue;
+  color: #3ea8ff;
+  border: 4px solid #3ea8ff;
   border-radius: 50%;
+  @media ${devices.tablet} {
+    display: none;
+  }
 `;
 
 const NextBtn = styled.div`
@@ -147,7 +172,10 @@ const NextBtn = styled.div`
   text-align: center;
   font-size: 16px;
   line-height: 32px;
-  color: blue;
-  border: 2px solid blue;
+  color: #3ea8ff;
+  border: 4px solid #3ea8ff;
   border-radius: 50%;
+  @media ${devices.tablet} {
+    display: none;
+  }
 `;

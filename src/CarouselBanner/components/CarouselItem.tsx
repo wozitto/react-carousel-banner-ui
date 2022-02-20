@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../../devices';
 
 type Props = {
   img: string;
@@ -31,4 +32,7 @@ const Inner = styled.div`
 const Img = styled.img`
   pointer-events: none;
   width: 75%;
+  @media ${devices.tablet} {
+    width: 100%;
+  }
 `;
