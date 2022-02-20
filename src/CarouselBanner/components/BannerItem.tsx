@@ -21,7 +21,7 @@ type Props = {
 export const BannerItem = ({ text, index, state, dispatch }: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
   const isMobile = document.body.clientWidth < 768;
-  const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
+  const iconStyle = { padding: 10, fontSize: 36 };
   const active = index && state ? state.activeIndex === index : false;
 
   return (
@@ -50,6 +50,7 @@ export const BannerItem = ({ text, index, state, dispatch }: Props) => {
 
 const Item = styled.div<{ active: boolean }>`
   user-select: none;
+  pointer-events: none;
   width: 8px;
   height: 8px;
   border: 2px solid #3ea8ff;
@@ -57,6 +58,7 @@ const Item = styled.div<{ active: boolean }>`
   background-color: ${({ active }) => (active ? '#3ea8ff' : '#fff')};
   margin-right: 3px;
   @media ${devices.tablet} {
+    pointer-events: auto;
     margin: 0;
     text-align: center;
     width: 145px;

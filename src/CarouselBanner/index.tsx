@@ -3,7 +3,7 @@ import { BannerWrapper } from './components/BannerWrapper';
 import { BannerItem } from './components/BannerItem';
 import { CarouselWrapper } from './components/CarouselWrapper';
 import { CarouselItem } from './components/CarouselItem';
-import reducer from './reducers';
+import { reducer } from './reducers';
 
 export const CarouselBanner = () => {
   const initialState = { activeIndex: 1 };
