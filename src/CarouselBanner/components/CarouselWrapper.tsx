@@ -4,15 +4,17 @@ import React, {
   Fragment,
   ReactElement,
   MouseEvent,
+  Dispatch,
 } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { devices } from '../../devices';
+import { STORE, ACTION } from '../reducers';
 
 type Props = {
-  state: any;
-  dispatch: any;
+  state: STORE;
+  dispatch: Dispatch<ACTION>;
   children: ReactElement[];
 };
 
@@ -41,13 +43,13 @@ export const CarouselWrapper = ({ state, dispatch, children }: Props) => {
     if (newIndex <= 0) {
       dispatch({ type: 'SET_INDEX', newIndex });
       return setTimeout(() => {
-        inner ? (inner.style.transition = 'transform 0.3s') : null;
+        inner ? (inner.style.transition = 'none') : null;
         dispatch({ type: 'SET_INDEX', newIndex: children.length });
       }, 200);
     } else if (newIndex - 1 >= children.length) {
       dispatch({ type: 'SET_INDEX', newIndex });
       return setTimeout(() => {
-        inner ? (inner.style.transition = 'transform 0.3s') : null;
+        inner ? (inner.style.transition = 'none') : null;
         dispatch({ type: 'SET_INDEX', newIndex: 1 });
       }, 200);
     }

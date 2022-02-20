@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -9,34 +9,36 @@ import {
   faIdCard,
 } from '@fortawesome/free-solid-svg-icons';
 import { devices } from '../../devices';
+import { STORE, ACTION } from '../reducers';
 
 type Props = {
   text: string;
   index?: number;
-  state?: any;
-  dispatch?: any;
+  state?: STORE;
+  dispatch?: Dispatch<ACTION>;
 };
 
 export const BannerItem = ({ text, index, state, dispatch }: Props) => {
   const icons = [faChartLine, faNoteSticky, faPrint, faCalculator, faIdCard];
   const isMobile = document.body.clientWidth < 768;
   const iconStyle: React.CSSProperties = { padding: 10, fontSize: 36 };
-  const active = index ? state.activeIndex === index : false;
+  const active = index && state ? state.activeIndex === index : false;
 
   return (
     <Item
       active={active}
       onClick={() =>
+        dispatch &&
         dispatch({
           type: 'SET_INDEX',
-          newIndex: index ? index : state.activeIndex,
+          newIndex: index ? index : 0,
         })
       }
     >
       {!isMobile && (
         <Icon active={active}>
           <FontAwesomeIcon
-            icon={index ? icons[index-1] : icons[0]}
+            icon={index ? icons[index - 1] : icons[0]}
             style={iconStyle}
           />
         </Icon>

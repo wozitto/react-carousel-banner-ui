@@ -1,10 +1,11 @@
-import React, { ReactElement, Fragment } from 'react';
+import React, { ReactElement, Fragment, Dispatch } from 'react';
 import styled from 'styled-components';
 import { devices } from '../../devices';
+import { STORE, ACTION } from '../reducers';
 
 type Props = {
-  state?: any;
-  dispatch?: any;
+  state?: STORE;
+  dispatch?: Dispatch<ACTION>;
   children: ReactElement[];
 };
 

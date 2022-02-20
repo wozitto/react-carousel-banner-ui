@@ -1,5 +1,5 @@
-type STORE = { activeIndex: number };
-type ACTION = { type: 'SET_INDEX'; newIndex: number };
+export type STORE = { activeIndex: number };
+export type ACTION = { type: 'SET_INDEX'; newIndex: number };
 
 const reducer = (state: STORE, action: ACTION) => {
   switch (action.type) {
