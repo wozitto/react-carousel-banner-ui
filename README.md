@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# react-carousel-banner-ui
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 制作期間
+2/15 ~ 2/21
 
-## Available Scripts
+## Technology
+- React
+- Typescript
+- styled-components
 
-In the project directory, you can run:
+## UI設計について
+### 前提
+  カルーセルバナーのみのページではなく、ページの中の１つのUIとして機能するカルーセルバナーを想定しています。
 
-### `yarn start`
+- mobile
+  - mobileユーザーはカルーセル移動はスワイプとの共通意識があるので、カルーセル移動はスワイプのみに
+<img src="https://user-images.githubusercontent.com/74745265/154842071-71e1049b-ebf1-4ee5-a3f1-7c461a42cb6f.png" width="40%"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- tablet
+  - tabletの場合指での操作が多いためバナーを下に移動
+  - スワイプの共通意識もあるためprev-btn, next-btn非表示
+<img src="https://user-images.githubusercontent.com/74745265/154842075-d9f53e43-4199-4006-98c4-0b6b2a837c1a.png" width="60%"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- desktop
+<img src="https://user-images.githubusercontent.com/74745265/154841688-7c8207e7-4d07-4c5b-bdf3-3390efc4e1cb.png" width="65%"/>
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 工夫したポイント
+- マネーフォワードのreactプロジェクト参考に。
+  - [React Componentの実装ルールを決めてみた](https://moneyforward.com/engineers_blog/2020/02/18/react-component-rules/)
+    - スタイルの管理としてstyled-components
+    - Functional Componentで実装する
+    - export defaultを使用しない
+  - https://github.com/moneyforward/cloud-react-ui
+    - commitlint + husky
+    - eslint(eslint-config-moneyforward) + prettier
+    - fontawsome
+- UXを意識
+  - 指を乗せる or MouseDown時にカルーセルを一旦止める、また離す時にカルーセルを必ず戻るか進めるかにするとただ止めて見たかった場合も意図しない方向に行ってしまう可能性があるので、指の動きが画面幅の10分の1未満だった場合は現在のカルーセルから変わらないようにしています。
+  - 無限カルーセルを綺麗に見せるための工夫
+   [無限カルーセルの実装](https://qiita.com/wintyo/items/a37a197f69aa205297a5#%E7%84%A1%E9%99%90%E3%82%AB%E3%83%AB%E3%83%BC%E3%82%BB%E3%83%AB%E3%81%AE%E5%AE%9F%E8%A3%85)
+- imgはdummyImgをurlでとってくる形だと実際の実装と異なるのでpublicの中のimgを使用
